@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetapan — DARK STORE PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="logo">💎 DARK STORE</div>
+        <nav>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="produk.html"><i class="fa-solid fa-box"></i> Produk</a>
+            <a href="tambah.html"><i class="fa-solid fa-plus"></i> Tambah Produk</a>
+            <a href="kategori.html"><i class="fa-solid fa-folder"></i> Kategori</a>
+            <a href="order.html"><i class="fa-solid fa-receipt"></i> Pesanan</a>
+            <a href="banner.html"><i class="fa-solid fa-image"></i> Banner</a>
+            <a href="setting.html" class="active"><i class="fa-solid fa-cog"></i> Tetapan</a>
+            <a href="#" onclick="logout()"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>⚙️ TETAPAN KEDAI</h1>
+            <a href="dashboard.html" class="btn btn-gray"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+        </div>
+
+        <div class="form-card">
+            <h3 style="margin-bottom:20px">🏪 Maklumat Kedai</h3>
+            
+            <div class="form-group">
+                <label>Nama Kedai</label>
+                <input type="text" id="setNama" required>
+            </div>
+
+            <div class="form-group">
+                <label>Nombor WhatsApp (Tanpa tanda +, contoh: 60194939829)</label>
+                <input type="tel" id="setWA" required>
+            </div>
+
+            <h3 style="margin:30px 0 20px">🔐 Akaun Admin</h3>
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="setUser" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password Baru (Kosongkan jika tak nak tukar)</label>
+                <input type="password" id="setPass" placeholder="Masukkan password baru">
+            </div>
+
+            <button class="btn btn-gold" onclick="simpanSetting()" style="width:100%;padding:14px;font-size:16px;margin-top:10px">💾 SIMPAN TETAPAN</button>
+        </div>
+
+        <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:15px">📦 Backup Data</h3>
+                <p style="color:var(--text-gray);margin-bottom:15px;font-size:14px">Muat turun semua data kedai sebagai fail backup</p>
+                <button class="btn btn-green" onclick="exportData()">📤 Export Backup</button>
+            </div>
+
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:15px">📥 Import Data</h3>
+                <p style="color:var(--text-gray);margin-bottom:15px;font-size:14px">Pulihkan data dari fail backup</p>
+                <label class="btn btn-gold" style="display:inline-block;cursor-pointer">
+                    📂 Pilih Fail Backup
+                    <input type="file" accept=".json" onchange="importData(event)" style="display:none">
+                </label>
+            </div>
+        </div>
+    </main>
+    <script src="../script.js"></script>
+</body>
+  </html>
+              
