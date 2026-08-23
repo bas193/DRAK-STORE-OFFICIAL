@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Produk — DARK STORE PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="logo">💎 DARK STORE</div>
+        <nav>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="produk.html"><i class="fa-solid fa-box"></i> Produk</a>
+            <a href="tambah.html" class="active"><i class="fa-solid fa-plus"></i> Tambah Produk</a>
+            <a href="kategori.html"><i class="fa-solid fa-folder"></i> Kategori</a>
+            <a href="order.html"><i class="fa-solid fa-receipt"></i> Pesanan</a>
+            <a href="banner.html"><i class="fa-solid fa-image"></i> Banner</a>
+            <a href="setting.html"><i class="fa-solid fa-cog"></i> Tetapan</a>
+            <a href="#" onclick="logout()"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>➕ TAMBAH PRODUK</h1>
+            <a href="produk.html" class="btn btn-gray"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+        </div>
+
+        <div class="form-card">
+            <input type="hidden" id="editId">
+            
+            <div class="form-group">
+                <label>Nama Produk *</label>
+                <input type="text" id="prodNama" placeholder="Contoh: 100 Diamond Free Fire" required>
+            </div>
+
+            <div class="form-group">
+                <label>Harga (RM) * — Tulis nombor sahaja, contoh: 10000</label>
+                <input type="number" id="prodHarga" placeholder="Contoh: 10000" required>
+            </div>
+
+            <div class="form-group">
+                <label>Stok *</label>
+                <input type="number" id="prodStok" placeholder="Contoh: 999" required>
+            </div>
+
+            <div class="form-group">
+                <label>Kategori *</label>
+                <select id="prodKategori" required></select>
+            </div>
+
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea id="prodDesc" rows="3" placeholder="Contoh: Proses 1-5 Minit, 24 Jam"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Gambar Produk</label>
+                <input type="file" id="prodGambar" accept="image/*" onchange="previewGambar(this)">
+                <div id="gambarPreview"></div>
+            </div>
+
+            <button type="button" class="btn btn-gold" onclick="simpanProduk()" style="width:100%;padding:14px;font-size:16px">💾 SIMPAN PRODUK</button>
+        </div>
+    </main>
+
+    <script>
+    function previewGambar(input) {
+        const preview = document.getElementById('gambarPreview');
+        preview.innerHTML = '';
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `<img src="${e.target.result}" class="preview-img">`;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
