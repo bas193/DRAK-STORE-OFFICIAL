@@ -14,44 +14,111 @@
     <aside class="admin-sidebar">
         <div class="logo"><i class="fa-solid fa-gem"></i> DARK STORE</div>
         <nav>
-            <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            <a href="produk.html"><i class="fa-solid fa-box"></i> Produk</a>
+            <a href="#" class="active" onclick="showSection('sec-kategori'); return false;"><i class="fa-solid fa-tags"></i> Kelola Kategori</a>
+            <a href="#" onclick="showSection('sec-produk'); return false;"><i class="fa-solid fa-boxes-stacked"></i> Kelola Produk</a>
             <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</a>
         </nav>
     </aside>
 
     <main class="admin-content">
         <div class="admin-header">
-            <h1>📊 Dashboard</h1>
+            <h1>📊 Admin Panel</h1>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3 id="totalProduk">0</h3>
-                <p>Jumlah Produk</p>
+        <!-- ========== SECTION: KELOLA KATEGORI ========== -->
+        <div id="sec-kategori" class="admin-section">
+            <div class="form-card" id="katForm">
+                <h3 id="katFormTitle">➕ Tambah Kategori Baru</h3>
+                <input type="hidden" id="editKatId">
+                
+                <div class="form-group">
+                    <label>Nama Kategori</label>
+                    <input type="text" id="katNama" placeholder="Contoh: Free Fire">
+                </div>
+                <div class="form-group">
+                    <label>Ikon Emoji</label>
+                    <input type="text" id="katIcon" placeholder="Contoh: 🔥" value="📦">
+                </div>
+                <div class="form-group">
+                    <label>Jenis Pesanan</label>
+                    <select id="katJenis">
+                        <option value="diamond">💎 Diamond / Top Up (Minta Player ID)</option>
+                        <option value="boost">📈 Boost / Promote (Minta Link)</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-gold" id="katBtn" onclick="editKatId.value ? simpanEditKategori() : tambahKategori()" style="width:100%;margin-top:10px">💾 SIMPAN KATEGORI</button>
+                <button class="btn btn-gray" onclick="resetKategoriForm()" style="width:100%;margin-top:8px">🔄 Reset</button>
             </div>
-            <div class="stat-card">
-                <h3>✅</h3>
-                <p>Sistem Siap</p>
-            </div>
-            <div class="stat-card">
-                <h3>24/7</h3>
-                <p>Buka Sentiasa</p>
+
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:20px">📋 Senarai Kategori</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ikon</th>
+                                <th>Nama Kategori</th>
+                                <th>Jenis</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kategoriList"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <div class="form-card">
-            <h3>👋 Selamat Datang, Admin!</h3>
-            <p style="color:var(--gray);margin-top:10px">Guna menu di kiri untuk urus produk kedai anda.</p>
-            <ul style="margin-top:15px;color:var(--gray);font-size:14px;line-height:1.8">
-                <li>✅ Tambah produk baru di bahagian Produk</li>
-                <li>✅ Hapus produk yang tak dijual lagi</li>
-                <li>✅ Pelanggan klik BELI → terus buka WhatsApp anda</li>
-                <li>✅ Nombor WhatsApp: +60194939829</li>
-            </ul>
+        <!-- ========== SECTION: KELOLA PRODUK ========== -->
+        <div id="sec-produk" class="admin-section" style="display:none">
+            <div class="form-card" id="prodForm">
+                <h3 id="prodFormTitle">➕ Tambah Produk Baru</h3>
+                <input type="hidden" id="editProdId">
+                
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="prodKategori"></select>
+                </div>
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" id="prodNama" placeholder="Contoh: 50 Diamond FF">
+                </div>
+                <div class="form-group">
+                    <label>Harga</label>
+                    <input type="text" id="prodHarga" placeholder="Contoh: RM3.50">
+                </div>
+                <div class="form-group">
+                    <label>Waktu Proses</label>
+                    <input type="text" id="prodProses" placeholder="Contoh: Proses 1-5 Minit" value="Proses 1-5 Minit">
+                </div>
+                
+                <button class="btn btn-gold" id="prodBtn" onclick="editProdId.value ? simpanEditProduk() : tambahProduk()" style="width:100%;margin-top:10px">💾 SIMPAN PRODUK</button>
+                <button class="btn btn-gray" onclick="resetProdukForm()" style="width:100%;margin-top:8px">🔄 Reset</button>
+            </div>
+
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:20px">📋 Senarai Produk</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ikon</th>
+                                <th>Kategori</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produkList"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
 
     <script src="../script.js"></script>
 </body>
-</html>
+                </html>
+    
