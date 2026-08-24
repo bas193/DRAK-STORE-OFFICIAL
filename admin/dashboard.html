@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — DARK STORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="admin-layout" onload="checkLogin()">
+    <aside class="admin-sidebar">
+        <div class="logo"><i class="fa-solid fa-gem"></i> DARK STORE</div>
+        <nav>
+            <a href="#" class="active" onclick="showSection('sec-kategori'); return false;"><i class="fa-solid fa-tags"></i> Kelola Kategori</a>
+            <a href="#" onclick="showSection('sec-produk'); return false;"><i class="fa-solid fa-boxes-stacked"></i> Kelola Produk</a>
+            <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>📊 Admin Panel</h1>
+        </div>
+
+        <!-- KATEGORI -->
+        <div id="sec-kategori" class="admin-section">
+            <div class="form-card" id="formKategori">
+                <h3 id="katFormTitle">➕ Tambah Kategori Baru</h3>
+                <input type="hidden" id="editKatId">
+                <div class="form-group">
+                    <label>Nama Kategori</label>
+                    <input type="text" id="namaKategori" placeholder="Contoh: Free Fire">
+                </div>
+                <div class="form-group">
+                    <label>Ikon Emoji</label>
+                    <input type="text" id="ikonKategori" placeholder="Contoh: 🔥" value="📦">
+                </div>
+                <div class="form-group">
+                    <label>Jenis Pesanan</label>
+                    <select id="jenisKategori">
+                        <option value="diamond">💎 Diamond / Top Up</option>
+                        <option value="boost">📈 Boost / Promote</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-gold" id="katBtn" onclick="simpanKategori()" style="width:100%;margin-top:10px">💾 SIMPAN KATEGORI</button>
+                <button type="button" class="btn btn-gray" onclick="resetKategoriForm()" style="width:100%;margin-top:8px">🔄 Reset</button>
+            </div>
+
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:20px">📋 Senarai Kategori</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ikon</th>
+                                <th>Nama Kategori</th>
+                                <th>Jenis</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabel-kategori"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUK -->
+        <div id="sec-produk" class="admin-section" style="display:none">
+            <div class="form-card" id="formProduk">
+                <h3 id="prodFormTitle">➕ Tambah Produk Baru</h3>
+                <input type="hidden" id="editProdId">
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="selectKategori"></select>
+                </div>
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" id="namaProduk" placeholder="Contoh: 50 Diamond FF">
+                </div>
+                <div class="form-group">
+                    <label>Harga</label>
+                    <input type="text" id="hargaProduk" placeholder="Contoh: RM3.50">
+                </div>
+                <div class="form-group">
+                    <label>Waktu Proses</label>
+                    <input type="text" id="prosesProduk" placeholder="Contoh: Proses 1-5 Minit" value="Proses 1-5 Minit">
+                </div>
+                <button type="button" class="btn btn-gold" id="prodBtn" onclick="simpanProduk()" style="width:100%;margin-top:10px">💾 SIMPAN PRODUK</button>
+                <button type="button" class="btn btn-gray" onclick="resetProdukForm()" style="width:100%;margin-top:8px">🔄 Reset</button>
+            </div>
+
+            <div class="form-card" style="max-width:100%">
+                <h3 style="margin-bottom:20px">📋 Senarai Produk</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ikon</th>
+                                <th>Kategori</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabel-produk"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+                                                                                                  </html>
+                                                                                                  
