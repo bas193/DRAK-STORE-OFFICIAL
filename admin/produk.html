@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk — DARK STORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="admin-layout" onload="checkLogin()">
+    <aside class="admin-sidebar">
+        <div class="logo"><i class="fa-solid fa-gem"></i> DARK STORE</div>
+        <nav>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="produk.html" class="active"><i class="fa-solid fa-box"></i> Produk</a>
+            <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>📦 Urus Produk</h1>
+        </div>
+
+        <!-- TAMBAH PRODUK -->
+        <div class="form-card" id="prodForm">
+            <h3>➕ Tambah Produk Baru</h3>
+            
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="prodKategori">
+                    <option value="Free Fire">Free Fire</option>
+                    <option value="Mobile Legends">Mobile Legends</option>
+                    <option value="Boost Service">Boost Service</option>
+                    <option value="Promoter">Promoter</option>
+                    <option value="Lain-lain">Lain-lain</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nama Produk</label>
+                <input type="text" id="prodNama" placeholder="Contoh: 100 Diamond FF">
+            </div>
+            <div class="form-group">
+                <label>Harga</label>
+                <input type="text" id="prodHarga" placeholder="Contoh: RM5.00">
+            </div>
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <input type="text" id="prodDesc" placeholder="Contoh: Proses 1-5 Minit">
+            </div>
+            <div class="form-group">
+                <label>Ikon Emoji</label>
+                <input type="text" id="prodIcon" placeholder="Contoh: 💎" value="📦">
+            </div>
+            
+            <button class="btn btn-gold" onclick="tambahProduk()" style="width:100%;margin-top:10px">💾 SIMPAN PRODUK</button>
+        </div>
+
+        <!-- SENARAI PRODUK -->
+        <div class="form-card" style="max-width:100%">
+            <h3 style="margin-bottom:20px">📋 Senarai Produk</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ikon</th>
+                            <th>Kategori</th>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="produkList"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+              </html>
+              
