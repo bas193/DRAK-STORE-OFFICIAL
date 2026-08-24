@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — DARK STORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="admin-layout" onload="checkLogin()">
+    <aside class="admin-sidebar">
+        <div class="logo"><i class="fa-solid fa-gem"></i> DARK STORE</div>
+        <nav>
+            <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="produk.html"><i class="fa-solid fa-box"></i> Produk</a>
+            <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="admin-header">
+            <h1>📊 Dashboard</h1>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="totalProduk">0</h3>
+                <p>Jumlah Produk</p>
+            </div>
+            <div class="stat-card">
+                <h3>✅</h3>
+                <p>Sistem Siap</p>
+            </div>
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Buka Sentiasa</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h3>👋 Selamat Datang, Admin!</h3>
+            <p style="color:var(--gray);margin-top:10px">Guna menu di kiri untuk urus produk kedai anda.</p>
+            <ul style="margin-top:15px;color:var(--gray);font-size:14px;line-height:1.8">
+                <li>✅ Tambah produk baru di bahagian Produk</li>
+                <li>✅ Hapus produk yang tak dijual lagi</li>
+                <li>✅ Pelanggan klik BELI → terus buka WhatsApp anda</li>
+                <li>✅ Nombor WhatsApp: +60194939829</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>
