@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARK STORE OFFICIAL</title>
+<style>
+  :root{--bg:#0D1117;--card:#161B22;--kuning:#FFC107;--hijau:#22C55E}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  body{background:var(--bg);color:#fff;padding:15px}
+  header{text-align:center;padding:20px 0}
+  header h1{color:var(--kuning)}
+  .filter{display:flex;gap:8px;overflow-x:auto;padding:10px 0}
+  .btn-kat{background:var(--card);color:#fff;border:1px solid #333;padding:8px 14px;border-radius:20px;cursor:pointer;white-space:nowrap}
+  .btn-kat.active{background:var(--kuning);color:#000;font-weight:bold}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{background:var(--card);padding:15px;border-radius:12px;text-align:center;border:1px solid #222}
+  .card .icon{font-size:30px}
+  .card h3{font-size:14px;margin:8px 0}
+  .card .harga{color:var(--kuning);font-size:18px;font-weight:bold}
+  .card .proses{font-size:12px;color:#aaa;margin-bottom:8px}
+  .card button{width:100%;background:var(--hijau);color:#fff;border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer}
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--hijau);padding:10px 20px;border-radius:8px;display:none}
+  #toast.show{display:block;animation:fade .3s}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ DARK STORE ⚡</h1>
+  <p>Top Up & Reach Channel Murah</p>
+</header>
+
+<div class="filter" id="kategori-filter"></div>
+
+<div class="grid" id="produk-list"></div>
+
+<div id="toast"></div>
+
+<script>
+const WA = "60194939829"; // TUKAR NOMBOR WHATSAPP KAU
+
+// DATA PRODUK - KAU EDIT SINI JE
+let data = {
+  kategori:[
+    {id:1,nama:"Reach",icon:"📈"},
+    {id:2,nama:"Free Fire",icon:"💎"},
+    {id:3,nama:"Mobile Legends",icon:"🛡️"},
+    {id:4,nama:"Boost",icon:"⚡"}
+  ],
+  produk:[
+    {id:1,kat:1,nama:"10 Reach",harga:"RM0.30",proses:"1-3 Minit"},
+    {id:2,kat:1,nama:"100 Reach",harga:"RM3.00",proses:"5-10 Minit"},
+    {id:3,kat:1,nama:"500 Reach",harga:"RM15.00",proses:"15-30 Minit"},
+    {id:4,kat:1,nama:"1000 Reach",harga:"RM28.00",proses:"1 Jam"},
+    {id:5,kat:2,nama:"50 Diamond FF",harga:"RM3.50",proses:"1-5 Minit"},
+    {id:6,kat:2,nama:"140 Diamond FF",harga:"RM9.50",proses:"1-5 Minit"},
+    {id:7,kat:3,nama:"86 Diamond ML",harga:"RM7.50",proses:"1-5 Minit"},
+    {id:8,kat:4,nama:"Boost Channel 1K",harga:"RM20.00",proses:"1-3 Hari"}
+  ]
+};
+
+// LOAD KATEGORI
+kategori-filter.innerHTML = `<button class="btn-kat active" onclick="filter(0,this)">Semua</button>` + 
+data.kategori.map(k=>`<button class="btn-kat" onclick="filter(${k.id},this)">${k.icon} ${k.nama}</button>`).join('');
+
+// FILTER PRODUK
+function filter(id,el){
+  document.querySelectorAll('.btn-kat').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  let list = id==0 ? data.produk : data.produk.filter(p=>p.kat==id);
+  produk-list.innerHTML = list.map(p=>{
+    let kat = data.kategori.find(k=>k.id==p.kat);
+    return `
+    <div class="card">
+      <div class="icon">${kat.icon}</div>
+      <h3>${p.nama}</h3>
+      <p class="proses">⚡ ${p.proses}</p>
+      <p class="harga">${p.harga}</p>
+      <button onclick="order('${p.nama}','${p.harga}')">🛒 BELI SEKARANG</button>
+    </div>`}).join('');
+}
+filter(0,document.querySelector('.btn-kat'));
+
+// ORDER KE WA
+function order(nama,harga){
+  let msg = `Halo Admin%0ASaya nak order:%0AProduk: ${nama}%0AHarga: ${harga}%0A%0ANama Channel/ID:`;
+  window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
+  toast.innerText = "Redirect ke WhatsApp...";
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2000);
+}
+</script>
+</body>
+</html>
